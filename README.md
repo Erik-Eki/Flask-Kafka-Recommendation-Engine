@@ -1,5 +1,7 @@
 # Flask-Kafka-Recommendation-engine
 
+![image](https://github.com/Erik-Eki/Flask-Kafka-Recommendation-Engine/assets/70281449/b09878d2-f551-4a07-98b3-9061f1931bf5)
+
  A small project for learning Kafka. You can pick a genre and mininum rating to get 10 video game recommendations. You can also send and listen to Kafka messages.
 
  Using:
