@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Recommendation System</title>
+</head>
+
+<body>
+    <h1>Recommendation System</h1>
+    <p>Here are some games that you may like:</p>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>User Score</th>
+            <th>Critic Score</th>
+            <th>Global Sales</th>
+        </tr>
+        <!-- Use a for loop to display the recommended movies -->
+        {% for game in recommendations %}
+        <tr>
+            <td>{{ game.Name }}</td>
+            <td>{{ game.Genre }}</td>
+            <td>{{ game.User_Score }}</td>
+            <td>{{ game.Critic_Score }}</td>
+            <td>{{ game.Global_Sales }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

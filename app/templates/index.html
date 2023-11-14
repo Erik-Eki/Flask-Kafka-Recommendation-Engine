@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Recommendation System</title>
+</head>
+
+<body>
+    <h1>Recommendation System</h1>
+    <p>Enter your preferences and get personalized movie recommendations</p>
+    <form action="/recommend" method="post">
+        <label for="genre">Preferred genre:</label>
+        <select id="genre" name="genre">
+            <option value="Action">Action</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Role-Playing">Role-Playing</option>
+            <option value="Racing">Racing</option>
+            <option value="Horror">Horror</option>
+            <option value="Sports">Shooter</option>
+            <option value="Sports">Puzzle</option>
+            <option value="Simulation">Simulation</option>
+            <option value="Strategy">Strategy</option>
+            <option value="Sports">Sports</option>
+            <option value="Misc">Misc</option>
+        </select>
+        <label for="rating">Minimum rating:</label>
+        <input type="number" id="rating" name="rating" min="1" max="5">
+        <button type="submit">Get recommendations</button>
+    </form>
+</body>
+
+</html>

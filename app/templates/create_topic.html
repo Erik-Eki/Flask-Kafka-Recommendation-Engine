@@ -1,0 +1,16 @@
+<!-- create_topic.html -->
+<html>
+<head>
+    <title>Create Kafka Topic</title>
+</head>
+<body>
+    <h1>Create Kafka Topic</h1>
+    <p>Enter the topic name and other parameters to create a Kafka topic</p>
+    <form action="{{ url_for('create_topic') }}" method="post">
+        <label for="topic_name">Topic name:</label>
+        <input type="text" id="topic_name" name="topic_name" required>
+        <!-- You can add more inputs for other parameters, such as partitions and replication factor -->
+        <button type="submit">Create topic</button>
+    </form>
+</body>
+</html>
