@@ -1,6 +1,7 @@
 from algo import get_recommendations
-from flask import Flask, render_template, request
+from flask import Flask, Response, render_template, request
 from kafka.admin import KafkaAdminClient, NewTopic
+from kafka import KafkaProducer, KafkaConsumer
 app = Flask(__name__)
 
 # Home page
@@ -26,13 +27,43 @@ def recommend():
     return render_template('recommend.html', recommendations=recommendations)
 
 
+@app.route('/stream')
+def stream():
+    #127.0.0.1:9092
+    consumer = KafkaConsumer('recommendations', bootstrap_servers=['kafka_b:9094'])
+    def events():
+        for msg in consumer:
+            yield 'data: {0}\n\n'.format(msg.value)
+    return Response(events(), mimetype="text/event-stream")
+
+@app.route('/streaming')
+def streaming():
+    # Render the stream.html template and return it as a response
+    return render_template('stream.html')
+
+@app.route('/message', methods=['POST'])
+def create_message():
+    message = request.form.get('message').encode('ASCII')
+    producer = KafkaProducer(bootstrap_servers=['kafka_b:9094'])
+    producer.send('recommendations', message)
+    return "Sent message to broker!"
+    
+@app.route('/message')
+def message():
+    return render_template('create_message.html')
+
+
+
+
+
+
 @app.route('/create_topic', methods=['POST'])
 def create_topic():
     # Get the topic name from the user input
     topic_name = request.form.get('topic_name')
 
     # Create a KafkaAdminClient object
-    admin_client = KafkaAdminClient(bootstrap_servers='127.0.0.1:9092')
+    admin_client = KafkaAdminClient(bootstrap_servers='kafka_b:9094')
 
     # Create a NewTopic object
     new_topic = NewTopic(name=topic_name, num_partitions=1, replication_factor=1)

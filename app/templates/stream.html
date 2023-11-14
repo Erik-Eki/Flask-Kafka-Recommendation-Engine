@@ -1,0 +1,30 @@
+<!-- stream.html -->
+<html>
+<head>
+    <title>Streaming Kafka Messages</title>
+    <script>
+        // Create an EventSource object that connects to the stream endpoint
+        var source = new EventSource("/stream");
+
+        // Define a function that handles the messages from the event stream
+        function handle_message(event) {
+            // Get the message data from the event
+            var data = event.data;
+
+            // Get the element where the messages are displayed
+            var element = document.getElementById("messages");
+
+            // Append the message data to the element
+            element.innerHTML += data + "<br>";
+        }
+
+        // Add an event listener for the message event
+        source.addEventListener("message", handle_message, false);
+    </script>
+</head>
+<body>
+    <h1>Streaming Kafka Messages</h1>
+    <p>Here are the messages from the recommendations-topic:</p>
+    <div id="messages"></div>
+</body>
+</html>
